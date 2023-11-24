@@ -45,7 +45,7 @@ filteredProducts.forEach(product => {
   contentPanier += `
     <tr>
       <td><img src="${product.image}" alt="${product.nom}" width="80"></td>
-      <td>${product.nom}</td>
+      <td>${product.title}</td>
       <td>${product.price} $</td>
       <td style="text-align: center">
         <span id="dim" onclick="dimQuan(${product.id})">-</span>

@@ -15,8 +15,9 @@ function filterProductsByCategory() {
     let products = getProductsFromLocalStorage();
   
     // Filtrer les produits par nom de produit
-    let filteredProducts = filterByName(products, searchInput);
-  
+    let filteredProducts = products.filter(product =>
+      product.title.toLowerCase().includes(searchInput));
+    
     displayFilteredProducts(filteredProducts);
   }
   
@@ -53,7 +54,7 @@ function filterProductsByCategory() {
                 <img src="${product.image}" alt="">
               </div>
               <div class="detail-box">
-                <h6>${product.nom}</h6>
+              <h6>${product.title.substring(0, 10)}</h6>
                 <h6>Price <span>${product.price}</span></h6>
               </div>
             </a>
@@ -64,8 +65,36 @@ function filterProductsByCategory() {
     });
   
     divAllProd.innerHTML = productCards.join('');
+
+    
+  let bouttonsPanier = document.querySelectorAll('.add-to-cart-btn');   //pointer sur les bouttons add to card
+  let panierNumber = document.getElementById('panier-nmbr');  //Nombre afficher dans la puce de panier
+  let counterPanier = 0; 
+  let parentIds = [] ;
+  panierNumber.innerHTML = counterPanier //toujours la puce est initialisé avec un zero
+  
+  bouttonsPanier.forEach(boutton => {
+    boutton.addEventListener('click' , (event) => {
+      counterPanier += 1; // Incrémente le compteur à chaque clic sur un bouton
+      boutton.style.outline = 'none';
+      panierNumber.innerHTML = counterPanier; // Affiche le compteur dans la puce du panier
+    
+    // Désactiver le bouton après le premier clic
+      boutton.disabled = true;
+  
+      // Récupère l'ID de la division parente du bouton cliqué et l'ajouté au tableau
+      let parentId = event.target.parentNode.id;
+      parentIds.push(parentId);
+      sessionStorage.setItem('panierPro', JSON.stringify(parentIds)) //j'ai stocker les products ajouter au panier dans la session storage
+    });
+  });
+  
+  // fin configuration
+  
   }
   
   // Appel initial pour afficher tous les produits
   displayFilteredProducts(getProductsFromLocalStorage());
+  
+
   

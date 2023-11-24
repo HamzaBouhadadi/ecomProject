@@ -2,13 +2,17 @@
 
 const divProd = document.getElementById('prods');
 
+
+
 // Récupérer les produits du local storage
 
 let products = JSON.parse(localStorage.getItem('products'));
 
+let latestProducts = products.slice(-8); // Sélectionne les 8 derniers éléments du tableau
+
 
 // Pour créer les cartes des produits dynamiquement 
-let onecard = products.map(product => {
+let onecard = latestProducts.map(product => {
     return (
       `<div class="col-sm-6 col-md-4 col-lg-3 product-card" id="product${product.id}">
         <div class="box" id="${product.id}">
@@ -17,7 +21,7 @@ let onecard = products.map(product => {
               <img src="${product.image}" alt="">
             </div>
             <div class="detail-box">
-              <h6>${product.nom}</h6>
+              <h6>${product.title.substring(0, 10)}</h6>
               <h6>Price <span>${product.price}</span></h6>
             </div>
             <div class="new">
