@@ -44,7 +44,7 @@ filteredProducts.forEach(product => {
   totalGlobal += total
   contentPanier += `
     <tr>
-      <td><img src="${product.image}" alt="${product.nom}" width="80"></td>
+      <td><img src="${product.images[0]}" alt="${product.nom}" width="80"></td>
       <td>${product.title}</td>
       <td>${product.price} $</td>
       <td style="text-align: center">

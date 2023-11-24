@@ -67,7 +67,7 @@
 
 let products ;
         
-  fetch('https://fakestoreapi.com/products')
+  fetch('https://dummyjson.com/products')
 .then(response => {
     if (!response.ok) {
       throw new Error('Problème lors de la récupération du fichier JSON : ' + response.status);
@@ -78,7 +78,7 @@ let products ;
     data => {
      products = data
      console.log(products)
-     localStorage.setItem('products' , JSON.stringify(products))
+     localStorage.setItem('products' , JSON.stringify(products.products))
 
     })
     

@@ -18,7 +18,7 @@ let onecard = latestProducts.map(product => {
         <div class="box" id="${product.id}">
           <a href="">
             <div class="img-box">
-              <img src="${product.image}" alt="">
+              <img src="${product.images[0]}" alt="">
             </div>
             <div class="detail-box">
               <h6>${product.title.substring(0, 10)}</h6>
@@ -63,3 +63,6 @@ bouttonsPanier.forEach(boutton => {
 });
 
 // fin configuration
+
+
+
